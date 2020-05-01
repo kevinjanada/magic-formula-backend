@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+    rest_api:
+        build: .
+        ports: 
+            - '8000:8000'
+
+    postgres:
+        image: postgres:12
+        environment: 
+            POSTGRES_USER: magic_formula
+            POSTGRES_DB: magic_formula
+            POSTGRES_PASSWORD: magic_formula
+        volumes:
+            - ./db/postgres-data:/var/lib/postgresql/data
+        
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: kevin.janada@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: postgres
+        ports:
+            - '5050:80'
