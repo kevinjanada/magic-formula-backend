@@ -8,16 +8,22 @@ services:
     postgres:
         image: postgres:12
         environment: 
-            POSTGRES_USER: magic_formula
-            POSTGRES_DB: magic_formula
-            POSTGRES_PASSWORD: magic_formula
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        env_file:
+            - .env
         volumes:
-            - ./db/postgres-data:/var/lib/postgresql/data
+            - postgres-data:/var/lib/postgresql/data
         
     pgadmin:
         image: dpage/pgadmin4
         environment:
-            PGADMIN_DEFAULT_EMAIL: kevin.janada@gmail.com
-            PGADMIN_DEFAULT_PASSWORD: postgres
+            PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+        env_file:
+            - .env
         ports:
             - '5050:80'
+volumes:
+    postgres-data:
