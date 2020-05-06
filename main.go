@@ -21,8 +21,9 @@ func initEnv() {
 
 func app() {
 	r := gin.Default()
+	SERVER_PORT, _ := os.LookupEnv("SERVER_PORT")
 	r.GET("/magic-formula", handlers.MagicFormulaHandler)
-	r.Run(":8000")
+	r.Run(fmt.Sprintf(":%s", SERVER_PORT))
 }
 
 func connectDB() {

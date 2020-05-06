@@ -1,5 +1,5 @@
 CREATE TABLE stocks (
-    id uuid,
+    id uuid PRIMARY KEY,
     code VARCHAR,
     name VARCHAR,
     listing_date TIMESTAMP,
